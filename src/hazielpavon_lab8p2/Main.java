@@ -560,25 +560,71 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-       
-        
-        String estilo; 
-        int distancia; 
-        int record; 
-        
+
+        String estilo;
+        int distancia;
+        int record;
+
         int ind = Ds_Estiloevento.getSelectedIndex();
-        
-        estilo = Ds_Estiloevento.getItemAt(ind); 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+        estilo = Ds_Estiloevento.getItemAt(ind);
+
+        int ind2 = Ds_Distanciaevento.getSelectedIndex();
+
+        distancia = Integer.parseInt(Ds_Distanciaevento.getItemAt(ind2));
+
+        record = Integer.parseInt(Ds_recordevento.getText());
+
+        Evento e = new Evento(estilo, record, distancia);
+
+        eventos.add(e);
+
+        JFileChooser jfc = new JFileChooser();
+        FileNameExtensionFilter filtro
+                = new FileNameExtensionFilter(
+                        "Haziel Docs", "Vivamel");
+        jfc.setFileFilter(filtro);
+        int seleccion = jfc.showSaveDialog(this);
+
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            try {
+
+                File fichero = null;
+                if (jfc.getFileFilter().getDescription().equals(
+                        "Haziel Docs")) {
+                    fichero
+                            = new File(jfc.getSelectedFile().getPath() + ".Vivamel");
+                } else {
+                    fichero = jfc.getSelectedFile();
+                }
+
+                fw = new FileOutputStream(fichero);
+                bw = new ObjectOutputStream(fw);
+
+                for (Evento l : eventos) {
+                    bw.writeObject(l);
+                }
+
+                bw.flush();
+                fw.flush();
+                bw.close();
+                fw.close();
+
+                JOptionPane.showMessageDialog(this,
+                        "Archivo guardado exitosamente");
+
+            } catch (Exception z) {
+                z.printStackTrace();
+            }
+
+        }
+        try {
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+        }
     }//GEN-LAST:event_jButton2MouseClicked
 
     /**
@@ -672,5 +718,5 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     ArrayList<Pais> paises = new ArrayList();
-
+    ArrayList<Evento> eventos = new ArrayList();
 }
