@@ -543,44 +543,44 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Ds_GuardarNadadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Ds_GuardarNadadoresMouseClicked
-
+        
         String nom, nacio, estilo;
         double tempo;
         int metros, edad, medallas, esta;
-
+        
         nom = Ds_nombre.getText();
-
+        
         int ind3 = Ds_nacionalidad.getSelectedIndex();
-
+        
         nacio = Ds_nacionalidad.getItemAt(ind3);
-
+        
         int ind = Ds_Estilo.getSelectedIndex();
-
+        
         estilo = Ds_Estilo.getItemAt(ind);
-
+        
         int ind2 = Ds_Distancia.getSelectedIndex();
-
+        
         metros = Integer.parseInt(Ds_Distancia.getItemAt(ind2));
-
+        
         esta = Integer.parseInt(Ds_Estatura.getText());
-
+        
         tempo = Double.parseDouble(Ds_ETempo.getText());
-
+        
         edad = Integer.parseInt(Ds_Edad1.getText());
-
+        
         medallas = (int) Ds_Medallas.getValue();
-
+        
         Nadador n = new Nadador(tempo, esta, edad, nom, nacio, metros, medallas, estilo);
-
+        
         paises.get(ind3).getJugadores().add(n);
-
+        
         JFileChooser jfc = new JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Haziel Docs", "vivamel");
         jfc.setFileFilter(filtro);
-
+        
         int seleccion;
         File fichero = null;
-
+        
         while (true) {
             seleccion = jfc.showSaveDialog(this);
             if (seleccion == JFileChooser.APPROVE_OPTION) {
@@ -589,9 +589,9 @@ public class Main extends javax.swing.JFrame {
                     filePath += ".vivamel";
                 }
                 fichero = new File(filePath);
-
+                
                 try ( FileOutputStream fw = new FileOutputStream(fichero, true);  ObjectOutputStream bw = new ObjectOutputStream(fw)) {
-
+                    
                     for (Pais p : paises) {
                         if (!p.getJugadores().isEmpty()) {
                             for (Nadador j : p.getJugadores()) {
@@ -599,51 +599,51 @@ public class Main extends javax.swing.JFrame {
                             }
                         }
                     }
-
+                    
                     JOptionPane.showMessageDialog(this, "Datos agregados al archivo existente");
                     break;
-
+                    
                 } catch (Exception z) {
                     z.printStackTrace();
                 }
             } else {
-
+                
                 break;
             }
         }
-
+        
 
     }//GEN-LAST:event_Ds_GuardarNadadoresMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-
+        
         String nomb;
         int med;
-
+        
         med = (int) Ds_Numeromedallaspais.getValue();
         nomb = Ds_Nombrepais.getText();
-
+        
         Pais p = new Pais(nomb, med);
-
+        
         paises.add(p);
-
+        
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) Ds_nacionalidad.getModel();
-
+        
         for (Pais paise : paises) {
             modelo.addElement(paise.getNombre());
         }
-
+        
         Ds_nacionalidad.setModel(modelo);
-
+        
         Ds_nacionalidad.removeAll();
-
+        
         JFileChooser jfc = new JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Haziel Docs", "vivamel");
         jfc.setFileFilter(filtro);
-
+        
         int seleccion;
         File fichero = null;
-
+        
         while (true) {
             seleccion = jfc.showSaveDialog(this);
             if (seleccion == JFileChooser.APPROVE_OPTION) {
@@ -652,53 +652,53 @@ public class Main extends javax.swing.JFrame {
                     filePath += ".vivamel";
                 }
                 fichero = new File(filePath);
-
+                
                 try ( FileOutputStream fw = new FileOutputStream(fichero, true);  ObjectOutputStream bw = new ObjectOutputStream(fw)) {
-
+                    
                     for (Pais l : paises) {
                         bw.writeObject(l);
                     }
-
+                    
                     JOptionPane.showMessageDialog(this, "Datos agregados al archivo existente");
                     break;
-
+                    
                 } catch (Exception z) {
                     z.printStackTrace();
                 }
             } else {
-
+                
                 break;
             }
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-
+        
         String estilo;
         int distancia;
         int record;
-
+        
         int ind = Ds_Estiloevento.getSelectedIndex();
-
+        
         estilo = Ds_Estiloevento.getItemAt(ind);
-
+        
         int ind2 = Ds_Distanciaevento.getSelectedIndex();
-
+        
         distancia = Integer.parseInt(Ds_Distanciaevento.getItemAt(ind2));
-
+        
         record = Integer.parseInt(Ds_recordevento.getText());
-
+        
         Evento e = new Evento(estilo, record, distancia);
-
+        
         eventos.add(e);
-
+        
         JFileChooser jfc = new JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Haziel Docs", "vivamel");
         jfc.setFileFilter(filtro);
-
+        
         int seleccion;
         File fichero = null;
-
+        
         while (true) {
             seleccion = jfc.showSaveDialog(this);
             if (seleccion == JFileChooser.APPROVE_OPTION) {
@@ -707,25 +707,25 @@ public class Main extends javax.swing.JFrame {
                     filePath += ".vivamel";
                 }
                 fichero = new File(filePath);
-
+                
                 try ( FileOutputStream fw = new FileOutputStream(fichero, true);  ObjectOutputStream bw = new ObjectOutputStream(fw)) {
-
+                    
                     for (Evento l : eventos) {
                         bw.writeObject(l);
                     }
-
+                    
                     JOptionPane.showMessageDialog(this, "Datos agregados al archivo existente");
                     break;
-
+                    
                 } catch (Exception z) {
                     z.printStackTrace();
                 }
             } else {
-
+                
                 break;
             }
         }
-
+        
 
     }//GEN-LAST:event_jButton2MouseClicked
 
@@ -738,33 +738,41 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void Ds_PaisescomboetcItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Ds_PaisescomboetcItemStateChanged
-
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for (Pais p : paises) {
-            modelo.addElement(p.getNombre());
-        }
-        Ds_Paisescomboetc.setModel(modelo);
-
+        
         DefaultTableModel modelo2 = (DefaultTableModel) Ds_TablaPaises.getModel();
-        modelo2.setRowCount(0);
-
+        
         int in = Ds_Paisescomboetc.getSelectedIndex();
-
-        if (in >= 0 && in < paises.size()) {
-            if (!paises.get(in).getJugadores().isEmpty()) {
-                for (Nadador n : paises.get(in).getJugadores()) {
-                    modelo2.addRow(new Object[]{n.getNombre(), n.getEdad(), n.getDisrancia(), n.getEstatura(), n.getEstilo(), n.getNacionalidad(), n.getTiempo(), n.getNumerodemedallas()});
-                }
+        DefaultComboBoxModel modeloCB = (DefaultComboBoxModel) Ds_Paisescomboetc.getModel();
+        String paisSeleccionado = modeloCB.getElementAt(in).toString();
+        
+        Pais p = new Pais();
+        for (Pais pa : paises) {
+            if (pa.getNombre().equals(paisSeleccionado)) {
+                p = pa;
             }
         }
-
+        
+        for (Nadador j : p.getJugadores()) {
+            Object row[] = new Object[7];
+            row[0] = j.getNombre();
+            row[1] = j.getEdad();
+            row[2] = j.getDisrancia();
+            row[3] = j.getEstatura();
+            row[4] = j.getEstilo();
+            row[5] = j.getNacionalidad();
+            row[6] = j.getTiempo();
+            row[7] = j.getNumerodemedallas();
+            modelo2.addRow(row);
+            
+        }
+        
         Ds_TablaPaises.setModel(modelo2);
-
+        
 
     }//GEN-LAST:event_Ds_PaisescomboetcItemStateChanged
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel(); 
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (Pais p : paises) {
             modelo.addElement(p.getNombre());
         }
@@ -786,21 +794,21 @@ public class Main extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
+                    
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Main.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(Main.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(Main.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
