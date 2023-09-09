@@ -896,28 +896,24 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void Ds_NadadoresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Ds_NadadoresItemStateChanged
-        // TODO add your handling code here:
+        DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) Ds_Nadadores.getModel();
+
+        for (Pais p : paises) {
+            for (Nadador j : p.getJugadores()) {
+                comboBoxModel.addElement(j.getNombre());
+            }
+        }
+
+        Ds_Nadadores.setModel(comboBoxModel);
     }//GEN-LAST:event_Ds_NadadoresItemStateChanged
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
 
-        Pais p = new Pais();
-
-        DefaultComboBoxModel modelo = (DefaultComboBoxModel) Ds_Nadadores.getModel();
-
-        for (Nadador j : p.getJugadores()) {
-            modelo.addElement(j.getNombre());
-        }
-
-        Ds_Nadadores.setModel(modelo);
-
         DefaultListModel modelolista = (DefaultListModel) Ds_Listanadadores.getModel();
-
-        Nadador jugadorSeleccionado = (Nadador) Ds_Nadadores.getSelectedItem();
+        String jugadorSeleccionado = (String) Ds_Nadadores.getSelectedItem(); 
 
         if (jugadorSeleccionado != null) {
-
-            modelolista.addElement(jugadorSeleccionado.getNombre());
+            modelolista.addElement(jugadorSeleccionado);
         }
 
 
