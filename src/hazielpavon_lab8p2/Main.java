@@ -907,6 +907,8 @@ public class Main extends javax.swing.JFrame {
         Ds_Nadadores.setModel(comboBoxModel);
     }//GEN-LAST:event_Ds_NadadoresItemStateChanged
 
+    // la logica esta buena pero no se lista... 
+    
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
 
         DefaultListModel modelolista = (DefaultListModel) Ds_Listanadadores.getModel();
