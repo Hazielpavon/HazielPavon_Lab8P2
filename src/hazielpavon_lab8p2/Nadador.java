@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
-public class Nadador implements Serializable, Runnable {
+public class Nadador implements Serializable {
 
     private int estatura, edad, numerodemedallas;
     private String nombre, nacionalidad;
@@ -94,20 +94,5 @@ public class Nadador implements Serializable, Runnable {
         return "Nadador: \n" + "estatura: " + estatura + "\n edad: " + edad + "\n numerodemedallas: " + numerodemedallas + "\n nombre: " + nombre + "\n nacionalidad: " + nacionalidad + "\n tiempo: " + tiempo + "\n disrancia: " + disrancia + "\n estilo: " + estilo;
     }
 
-    @Override
-    public void run() {
-        Evento x = new Evento();
-        int distanciaRecorrida = 0;
-        Random random = new Random();
-        while (distanciaRecorrida < x.getDistancia()) {
-            int avance = random.nextInt(10) + 1;
-            distanciaRecorrida += avance;
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        JOptionPane.showMessageDialog(null, nombre + " ha terminado el evento " + estilo);
-    }
 }
+    
